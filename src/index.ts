@@ -3,6 +3,7 @@ import helmet from "helmet";
 import morgan from "morgan";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
+import apiV1 from './api_v1';
 
 dotenv.config();
 const app = express();
@@ -21,3 +22,5 @@ app.use(morgan("common"));
 app.listen(8080, () => {
   console.log(">>> Servidor backend rodando!");
 });
+
+app.use('/api_v1', apiV1());
