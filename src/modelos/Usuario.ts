@@ -57,3 +57,10 @@ const UsuarioSchema = new mongoose.Schema(
 );
 
 export const UsuarioModelo = mongoose.model("Usuario", UsuarioSchema);
+
+export const criarUsuario = (dados: Record<string, any>) => new UsuarioModelo(dados).save().then((usuario) => usuario.toObject());
+export const selecionarUsuarios = () => UsuarioModelo.find();
+export const selecionarUsuarioPeloEmail = (email: string) => UsuarioModelo.findOne({email});
+export const selecionarUsuarioPeloId = (id: string) => UsuarioModelo.findById(id);
+export const apagarUsuarioPeloId = (id: string) => UsuarioModelo.findOneAndDelete({_id: id});
+export const atualizarUsuarioPeloId = (id: string, dados: Record<string, any>) => UsuarioModelo.findByIdAndUpdate(id, dados)
