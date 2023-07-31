@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { IUsuario } from "types/types";
 
 const UsuarioSchema = new mongoose.Schema(
   {
@@ -56,7 +57,7 @@ const UsuarioSchema = new mongoose.Schema(
   { timestamps: true },
 );
 
-export const UsuarioModelo = mongoose.model("Usuario", UsuarioSchema);
+export const UsuarioModelo = mongoose.model<IUsuario>("Usuario", UsuarioSchema);
 
 export const criarUsuario = (dados: Record<string, any>) => new UsuarioModelo(dados).save().then((usuario) => usuario.toObject());
 export const selecionarUsuarios = () => UsuarioModelo.find();
